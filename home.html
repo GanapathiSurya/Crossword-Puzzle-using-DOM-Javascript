@@ -8,17 +8,17 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     </head>
-    <body>
-        <div class="header container-fluid p-2 text-white" >
+    <body style="padding: 0;">
+        <div class="header  p-2 text-white" >
             <h2>KnowledgeFace</h2>
         </div>
         <div id="puzzle" >
             <div id="title"  style="margin: auto;">
                 <center><h3>Entrepreneurs</h3></center>
             </div>
-            <div id="box-container" style="margin: auto;">
+            <form id="box-container" style="margin: auto;">
 
-            </div>
+            </form>
         </div>
       
     </body>
@@ -26,7 +26,7 @@
         var rows=10;
         var cols=10;
         var boxContainer=document.getElementById("box-container");
-        var colors=["#ffe7c7","#acddde","#e1f8dc","#fef8dd","#ecafb4","#cddf97","#885c39"];
+        var colors=["#ffe7c7","#acddde","#e1f8dc","#fef8dd","#ecafb4","#cddf97"];
         boxContainer.style.width="500px";
         boxContainer.style.height="500px";
         for(var i=0;i<rows;i++)
@@ -36,32 +36,51 @@
             rowdiv.style.display="flex";   
         for(var j=0;j<cols;j++)
         {
-            let coldiv=document.createElement("div");
+            let coldiv=document.createElement("input");
             let span=document.createElement("span");
             span.style.fontSize="15px";
             span.style.position="absolute";
             span.style.left="2px";
             span.style.top="2px";
+            
             coldiv.style.border="1px solid #f1f1f1";
             coldiv.style.width=(boxContainer.style.width.slice(0,3)/cols)+"px";
             coldiv.style.height=(boxContainer.style.height.slice(0,3)/rows)+"px";
             if(i%2 == 0 || j%2 == 0)
             {
-                coldiv.style.backgroundColor=colors[Math.floor((Math.random() * 7) + 0)];
+                coldiv.style.backgroundColor=colors[Math.floor((Math.random() * 6) + 0)];
             }
             else 
             {
-            coldiv.innerText="a";
+            coldiv.value="";
             span.innerText="1";
+            coldiv.setAttribute("required","true");
             }
             coldiv.style.fontSize="20px";
             coldiv.style.position="relative";
             coldiv.style.padding="15px";
-            
             coldiv.appendChild(span);
+            coldiv.setAttribute("class","colbox");
+            coldiv.setAttribute("maxlength","1");
+            coldiv.setAttribute("minlength","1");
+            coldiv.contentEditable="true";
             rowdiv.appendChild(coldiv);
+
         }
         boxContainer.appendChild(rowdiv);
         }
+        center=document.createElement("center");
+        button=document.createElement("button");
+        center.appendChild(button);
+        button.innerText="Submit Answers";
+        button.style.margin="20px 0px";
+        button.style.backgroundColor="black";
+        button.style.color="white";
+        button.style.border="none";
+        button.style.padding="10px";
+        button.style.borderRadius="15px";
+        button.setAttribute("type","submit");
+        boxContainer.appendChild(center);
+
     </script>
 </html>

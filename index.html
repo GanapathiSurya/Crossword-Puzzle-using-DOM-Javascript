@@ -49,6 +49,7 @@
             if(i%2 == 0 || j%2 == 0)
             {
                 coldiv.style.backgroundColor=colors[Math.floor((Math.random() * 6) + 0)];
+                coldiv.setAttribute("disabled","true");
             }
             else 
             {
@@ -63,7 +64,7 @@
             coldiv.setAttribute("class","colbox");
             coldiv.setAttribute("maxlength","1");
             coldiv.setAttribute("minlength","1");
-            coldiv.contentEditable="true";
+            //coldiv.contentEditable="true";
             rowdiv.appendChild(coldiv);
 
         }

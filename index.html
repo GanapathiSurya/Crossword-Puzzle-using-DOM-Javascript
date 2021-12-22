@@ -14,7 +14,7 @@
         </div>
         <div id="puzzle" >
             <div id="title"  style="margin: auto;">
-                <center><h3>Entrepreneurs</h3></center>
+                <center><h3>Sample Puzzle</h3></center>
             </div>
             <form id="box-container" style="margin: auto;">
 
@@ -23,48 +23,74 @@
       
     </body>
     <script type="text/javascript">
-        var rows=10;
-        var cols=10;
+        
+        var data=[['c','r','o','s','s'],['o','o','g','o','l'],['u','t','n','u','e'],['g','o','a','l','e'],['h','m','m','-','p']];
+        var nums=[[0,0,1],[0,3,4],[0,4,3],[1,4,2],[3,0,6],[4,1,7],[4,2,5]];
+        var rows=5;
+        var cols=5;
+        var correct=1;
         var boxContainer=document.getElementById("box-container");
         var colors=["#ffe7c7","#acddde","#e1f8dc","#fef8dd","#ecafb4","#cddf97"];
-        boxContainer.style.width="500px";
-        boxContainer.style.height="500px";
+        boxContainer.style.width="300px";
+        boxContainer.style.height="300px";
         for(var i=0;i<rows;i++)
         {
             let rowdiv=document.createElement("div");
-            //rowdiv.style.border="1px solid #f3f3f3";
             rowdiv.style.display="flex";   
         for(var j=0;j<cols;j++)
         {
-            let coldiv=document.createElement("input");
+            let coldiv=document.createElement("div");
+            let input=document.createElement("input");
             let span=document.createElement("span");
             span.style.fontSize="15px";
             span.style.position="absolute";
-            span.style.left="2px";
-            span.style.top="2px";
-            
+            span.style.left="0px";
+            span.style.top="0px";
             coldiv.style.border="1px solid #f1f1f1";
+            span.style.width="20px";
+            span.style.height="20px";
             coldiv.style.width=(boxContainer.style.width.slice(0,3)/cols)+"px";
             coldiv.style.height=(boxContainer.style.height.slice(0,3)/rows)+"px";
-            if(i%2 == 0 || j%2 == 0)
+            span.style.position="absolute";
+            span.style.right="2px";
+            span.style.bottom="2px";
+            input.style.width="100%";
+            input.style.border="none";
+            input.setAttribute("type","text");
+            input.setAttribute("onclick","this.select()");
+            if(data[i][j]=='-')
             {
-                coldiv.style.backgroundColor=colors[Math.floor((Math.random() * 6) + 0)];
-                coldiv.setAttribute("disabled","true");
+                let color= colors[Math.floor((Math.random() * 6) + 0)];
+                coldiv.style.backgroundColor=color;
+                input.setAttribute("disabled","true");
+                input.style.backgroundColor=color;
             }
             else 
             {
-            coldiv.value="";
-            span.innerText="1";
-            coldiv.setAttribute("required","true");
+                //input.value=data[i][j];
+                //span.innerText="1";
+                input.setAttribute("required","true");
+                input.style.backgroundColor="white";
+                
+            }
+            for(var c=0;c<nums.length;c++)
+            {
+                if(nums[c][0]==i && nums[c][1]==j )
+                {
+                    span.innerText=nums[c][2];
+
+                }
             }
             coldiv.style.fontSize="20px";
             coldiv.style.position="relative";
             coldiv.style.padding="15px";
             coldiv.appendChild(span);
+            coldiv.appendChild(input);
             coldiv.setAttribute("class","colbox");
-            coldiv.setAttribute("maxlength","1");
-            coldiv.setAttribute("minlength","1");
-            //coldiv.contentEditable="true";
+            
+            input.setAttribute("maxlength","1");
+            input.setAttribute("minlength","1");
+            input.setAttribute("onchange","checkbox(this,"+i+","+j+")");
             rowdiv.appendChild(coldiv);
 
         }
@@ -80,8 +106,59 @@
         button.style.border="none";
         button.style.padding="10px";
         button.style.borderRadius="15px";
+        //button.style.display="none";
         button.setAttribute("type","submit");
+        //button.onclick=checkanswers()
         boxContainer.appendChild(center);
+        
+        function checkbox(ele,x,y)
+        {
+            
+            if(ele.value!=data[x][y])
+            {
+                ele.parentNode.style.backgroundColor="red";
+                ele.parentNode.style.color="white";
+                correct=0;
 
+            }
+            else 
+            {
+                ele.parentNode.style.backgroundColor="green";
+                ele.parentNode.style.color="white";
+                correct=1;
+
+            }
+        }
+        setInterval(()=>{
+            console.log(correct);
+            if(correct==0)
+        {
+        button.style.display="none";
+
+        }
+        else{
+            button.style.display="block";
+
+        }
+        },1000);
+        
+        function checkanswers()
+        {
+            var t=0,f=0;
+            for(var i=0;i<rows;i++)
+            {
+                for(var j=0;j<cols;j++)
+                {
+                    if(data[i][j]=="-")
+                    {
+                        continue;
+                    }
+                    else 
+                    {
+
+                    }
+                }
+            }
+        }
     </script>
 </html>

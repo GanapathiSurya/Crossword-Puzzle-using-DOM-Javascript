@@ -113,11 +113,13 @@
         
         function checkbox(ele,x,y)
         {
-            
-            if(ele.value!=data[x][y])
+            let v=ele.value.toLowerCase()
+            if(v !=data[x][y])
             {
                 ele.parentNode.style.backgroundColor="red";
                 ele.parentNode.style.color="white";
+                ele.style.backgroundColor="red";
+                ele.style.color="white";
                 correct=0;
 
             }
@@ -125,9 +127,12 @@
             {
                 ele.parentNode.style.backgroundColor="green";
                 ele.parentNode.style.color="white";
+                ele.style.backgroundColor="green";
+                ele.style.color="white";
                 correct=1;
 
             }
+            ele.value=v;
         }
         // setInterval(()=>{
         //     console.log(correct);

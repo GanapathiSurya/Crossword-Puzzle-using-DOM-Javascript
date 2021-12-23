@@ -12,19 +12,24 @@
         <div class="header  p-2 text-white" >
             <h2>ScholarToday</h2>
         </div>
-        <div id="puzzle" >
+        <form id="puzzle" >
             <div id="title"  style="margin: auto;">
                 <center><h3>Sample Puzzle</h3></center>
             </div>
             <div id="box-container" style="margin: auto;">
 
             </div>
+            <!-- <div>
+                <center>
+                    <button class="btn btn-dark mt-2" type="button" onclick="checkanswers()">Submit Answers</button>
+                </center>
+            </div> -->
             <div>
                 <center>
-                    <button class="btn btn-dark mt-2" onclick="fill()">Show Answers</button>
+                    <button  type="button" class="btn btn-dark mt-2" onclick="fill()">Show Answers</button>
                 </center>
             </div>
-        </div>
+        </form>
         <div class="row">
             <div class="col">
                 <div>
@@ -45,15 +50,16 @@
     </body>
     <script type="text/javascript">
         
-        var data=[['c','r','o','s','s'],['o','o','g','o','l'],['u','t','n','u','e'],['g','o','a','l','e'],['h','m','m','-','p']];
-        var nums=[[0,0,1],[0,3,4],[0,4,3],[1,4,2],[3,0,6],[4,1,7],[4,2,5]];
-        var rows=5;
-        var cols=5;
+        var data=[['a','s','-','h','o','s','p','i','t','a','l','s'],['-','c','-','-','p','-','a','-','h','-','-','i'],['-','a','n','a','e','s','t','h','e','t','i','c'],['o','r','-','-','r','-','i','-','a','-','-','k'],['i','s','o','l','a','t','e','-','t','-','m'],['n','-','-','-','t','-','n','u','r','s','e','s'],['t','-','s','-','i','-','t','-','e','-','d','-'],['m','a','t','r','o','n','-','s','-','f','i','t'],['e','-','i','-','n','-','-','e','-','-','c','-'],['n','o','t','e','-','c','h','r','o','n','i','c'],['t','-','c','-','o','-','-','u','-','-','n','-'],['-','t','h','e','r','m','o','m','e','t','e','r']];
+        var nums=[[0,0,1],[0,1,2],[0,3,3],[0,4,4],[0,6,5],[0,8,6],[0,11,7],[2,1,8],[3,0,9],[4,0,10],[4,10,11],[5,6,12],[6,2,13],[7,0,14],[7,7,15],[7,9,16],[9,0,17],[9,5,18],[10,4,19],[11,2,20]];
+
+        var rows=12;
+        var cols=12;
         var correct=1;
         var boxContainer=document.getElementById("box-container");
         var colors=["#ffe7c7","#acddde","#e1f8dc","#fef8dd","#ecafb4","#cddf97"];
-        boxContainer.style.width="300px";
-        boxContainer.style.height="300px";
+        boxContainer.style.width="720px";
+        boxContainer.style.height="720px";
         for(var i=0;i<rows;i++)
         {
             let rowdiv=document.createElement("div");
@@ -88,8 +94,6 @@
             }
             else 
             {
-                //input.value=data[i][j];
-                //span.innerText="1";
                 input.setAttribute("required","true");
                 input.style.backgroundColor="white";
                 
@@ -117,21 +121,6 @@
         }
         boxContainer.appendChild(rowdiv);
         }
-        // center=document.createElement("center");
-        // button=document.createElement("button");
-        // center.appendChild(button);
-        // button.innerText="Submit Answers";
-        // button.style.margin="20px 0px";
-        // button.style.backgroundColor="black";
-        // button.style.color="white";
-        // button.style.border="none";
-        // button.style.padding="10px";
-        // button.style.borderRadius="15px";
-        // button.style.display="none";
-        // button.setAttribute("type","submit");
-        //button.onclick=checkanswers()
-        //boxContainer.appendChild(center);
-        
         function checkbox(ele,x,y)
         {
             let v=ele.value.toLowerCase()
@@ -158,11 +147,6 @@
         function fill()
         {
             let rownodes = boxContainer.childNodes;
-            // console.log(rownodes.innerHTML);
-            // console.log(rownodes[5]);
-            // console.log(rownodes[5].childNodes);
-            // colnodes=rownodes[5].childNodes;
-            // console.log(colnodes[0]);
             for(var i=0;i<rows+1;i++)
             {
                 
@@ -178,35 +162,36 @@
                 }
             }
         }
-        // setInterval(()=>{
-        //     console.log(correct);
-        //     if(correct==0)
-        // {
-        // button.style.display="none";
-
-        // }
-        // else{
-        //     button.style.display="block";
-
-        // }
-        // },1000);
         
         // function checkanswers()
         // {
-        //     var t=0,f=0;
-        //     for(var i=0;i<rows;i++)
+        //     let fl=0;
+        //     let rownodes = boxContainer.childNodes;
+            
+        //     for(var i=1;i<=rows;i++)
         //     {
+                
+        //         let colnodes=rownodes[i].childNodes;
         //         for(var j=0;j<cols;j++)
         //         {
-        //             if(data[i][j]=="-")
+        //             spaninputNode=colnodes[j].childNodes;
+        //             if(data[i-1][j] != "-")
         //             {
-        //                 continue;
+        //                 if(spaninputNode[1].value!=data[i-1][j])
+        //                 {
+        //                     fl=1;
+        //                 }
         //             }
-        //             else 
-        //             {
-
-        //             }
+                    
         //         }
+        //     }
+        //     if(fl==1)
+        //     {
+        //         alert("All answers are not correct");
+        //     }
+        //     else 
+        //     {
+        //         alert("All answers are correct");
         //     }
         // }
     </script>
